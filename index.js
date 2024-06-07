@@ -11,7 +11,7 @@ bot.on('message', (msg) => {
     const chatId = msg.chat.id;
     const userId = msg.from.id;
 
-    if (userId === process.env.SPECIFIC_USER_ID) {
+    if (userId == process.env.SPECIFIC_USER_ID) {
         const text = msg.text;
 
         translate(text, { to: 'en' })
