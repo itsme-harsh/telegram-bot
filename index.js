@@ -3,16 +3,23 @@ import TelegramBot from 'node-telegram-bot-api';
 
 dotenv.config();
 
-// Replace 'YOUR_TOKEN' with your bot's API token
-const bot =new  TelegramBot(process.env.TELEGRAM_ACCESS_TOKEN, { polling: true });
+const SPECIFIC_USER_ID = process.env.SPECIFIC_USER_ID;
 
-bot.on('message', async (msg) => {
-    const chatId = msg.chat.id;
+const bot = new TelegramBot(process.env.TELEGRAM_ACCESS_TOKEN, { polling: true });
+
+bot.onText(/\/start/, (msg) => {
+    bot.sendMessage(msg.chat.id, 'Hello! Send me a message, and I will translate it into English.');
+});
+
+bot.on('message', (msg) => {
     const userId = msg.from.id;
-
-    if (userId == process.env.SPECIFIC_USER_ID) {
-        if ((msg.text).toLowercase() == "hello" || "hi") {
-            bot.sendMessage(chatId, `Translation: ${res.text}`);
+    const chatId = msg.chat.id;
+    console.log(msg.text);
+    if (userId == SPECIFIC_USER_ID) {
+        if(msg.text == "hello" || "hi"){
+            bot.sendMessage(hello, msg.from);
         }
+    } else if (!msg.text.startsWith('/start')) {
+        bot.sendMessage(chatId, 'Sorry, this bot is only for a specific user.');
     }
 });
