@@ -3,23 +3,28 @@ import TelegramBot from 'node-telegram-bot-api';
 
 dotenv.config();
 
-const SPECIFIC_USER_ID = process.env.SPECIFIC_USER_ID;
+const token = process.env.TELEGRAM_ACCESS_TOKEN;
 
-const bot = new TelegramBot(process.env.TELEGRAM_ACCESS_TOKEN, { polling: true });
+let bot;
 
-bot.onText(/\/start/, (msg) => {
-    bot.sendMessage(msg.chat.id, 'Hello! Send me a message, and I will translate it into English.');
-});
+if (!global.botInstance) {
+    global.botInstance = new TelegramBot(token, { polling: true });
+    bot = global.botInstance;
 
-bot.on('message', (msg) => {
-    const userId = msg.from.id;
-    const chatId = msg.chat.id;
-    console.log(msg.text);
-    if (userId == SPECIFIC_USER_ID) {
-        if(msg.text == "hello" || "hi"){
-            bot.sendMessage(hello, msg.from);
+    bot.on('message', (msg) => {
+        const chatId = msg.chat.id;
+        const userId = msg.from.id;
+
+        console.log(`Received message from user ID: ${userId}`);
+
+        if (msg.text.trim().toLowerCase() === "hello") {
+            bot.sendMessage(chatId, `Hello!! ${msg.from.first_name}`);
         }
-    } else if (!msg.text.startsWith('/start')) {
-        bot.sendMessage(chatId, 'Sorry, this bot is only for a specific user.');
-    }
-});
+
+    });
+
+} else {
+    bot = global.botInstance;
+}
+
+console.log("Bot instance is running");
