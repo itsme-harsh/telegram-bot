@@ -18,7 +18,7 @@ if (!global.botInstance) {
         console.log(`Received message from user ID: ${userId}`);
 
         if (msg.text.trim().toLowerCase() === "hello") {
-            bot.sendMessage(chatId, `Hello!! ${msg.from.first_name}`);
+            bot.sendMessage(chatId, `👋 Hello!! ${msg.from.first_name}`);
         }
 
     });
