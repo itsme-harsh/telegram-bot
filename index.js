@@ -17,7 +17,7 @@ if (!global.botInstance) {
 
         console.log(`Received message from user ID: ${userId}`);
 
-        if (msg.text.trim().toLowerCase().match(/^(hello|hi{1,6})$/)) {
+        if (msg.text.trim().toLowerCase().match(/^(hello|hi{1,12})$/)) {
             bot.sendMessage(chatId, `👋 Hello!! ${msg.from.first_name}`);
         }
 
