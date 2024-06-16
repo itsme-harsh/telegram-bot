@@ -37,7 +37,11 @@ if (!global.botInstance) {
                 return ;
             }else{
                 const text = await translate(
-                    msg.text, {to:"en"}
+                    msg.text, 
+                    {
+                        from : "fr",
+                        to:"en"
+                    }
                 )
                 
                     bot.sendMessage(chatId, text);
