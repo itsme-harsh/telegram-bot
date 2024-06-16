@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+import franc from 'franc';
 import TelegramBot from 'node-telegram-bot-api';
 import translate from 'translate';
 
@@ -19,14 +20,14 @@ if (!global.botInstance) {
         console.log(`Received message from user ID: ${userId}`);
         try {
 
-            const detectLanguage = await translate.detect(msg.text);
+            const detectLanguage = await franc(msg.text);
             console.log(detectLanguage);
 
             if (detectLanguage === 'en') {
                 return;
             } else {
                 const text = await translate(
-                    msg.text, { to: "en" }
+                    msg.text, "en"
                 )
                 setTimeout(() => {
                     bot.sendMessage(chatId, text);
