@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import franc from 'franc';
+import {franc} from 'franc';
 import TelegramBot from 'node-telegram-bot-api';
 import translate from 'translate';
 
