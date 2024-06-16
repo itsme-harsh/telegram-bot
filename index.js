@@ -28,17 +28,17 @@ if (!global.botInstance) {
             if (detectLanguage === 'eng') {
                 return;
             } else if (detectLanguage === "und"){
-                const text = await translate(
+                return ;
+            }else{
+                return;
+            }
+        } catch (error) {
+            const text = await translate(
                     msg.text, "en"
                 )
                 setTimeout(() => {
                     bot.sendMessage(chatId, text);
                 }, 1000);
-            }else{
-                return;
-            }
-        } catch (error) {
-            console.log(error);
         }
 
 
