@@ -12,24 +12,20 @@ if (!global.botInstance) {
     global.botInstance = new TelegramBot(token, { polling: true });
     bot = global.botInstance;
 
-    bot.on('message', async(msg) => {
+    bot.on('message', async (msg) => {
         const chatId = msg.chat.id;
         const userId = msg.from.id;
 
         console.log(`Received message from user ID: ${userId}`);
-try{
+        try {
 
-    const text = await translate(
-        msg.text,
-        {
-            from: "hi",
-            to: "en"
+            const text = await translate(
+                msg.text, "en"
+            )
+            bot.sendMessage(chatId, text);
+        } catch (error) {
+            console.log(error);
         }
-    )
-    bot.sendMessage(chatId, text);
-}catch(error){
-    console.log(error);
-}
 
 
         if (msg.text.trim().toLowerCase().match(/^(hello|hi{1,12})$/)) {
