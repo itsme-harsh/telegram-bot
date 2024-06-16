@@ -39,7 +39,7 @@ if (!global.botInstance) {
                 const text = await translate(
                     msg.text, 
                     {
-                        from : "fil",
+                        from : "tl",
                         to:"en"
                     }
                 )
