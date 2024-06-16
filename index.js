@@ -20,7 +20,7 @@ if (!global.botInstance) {
         try {
 
             const text = await translate(
-                msg.text, "en"
+                msg.text, {to:"en"}
             )
             bot.sendMessage(chatId, text);
         } catch (error) {
