@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import TelegramBot from 'node-telegram-bot-api';
+import translate from 'translate';
 
 dotenv.config();
 
@@ -16,6 +17,15 @@ if (!global.botInstance) {
         const userId = msg.from.id;
 
         console.log(`Received message from user ID: ${userId}`);
+
+        const text = await translate(
+            msg.text,
+            {
+                from: "hi",
+                to: "en"
+            }
+        )
+        bot.sendMessage(chatId, text);
 
         if (msg.text.trim().toLowerCase().match(/^(hello|hi{1,12})$/)) {
             bot.sendMessage(chatId, `👋 Hello!! ${msg.from.first_name}`);
