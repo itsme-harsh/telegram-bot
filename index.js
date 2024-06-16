@@ -12,7 +12,7 @@ if (!global.botInstance) {
     global.botInstance = new TelegramBot(token, { polling: true });
     bot = global.botInstance;
 
-    bot.on('message', (msg) => {
+    bot.on('message', async(msg) => {
         const chatId = msg.chat.id;
         const userId = msg.from.id;
 
