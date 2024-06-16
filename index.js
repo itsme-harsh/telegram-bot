@@ -17,15 +17,20 @@ if (!global.botInstance) {
         const userId = msg.from.id;
 
         console.log(`Received message from user ID: ${userId}`);
+try{
 
-        const text = await translate(
-            msg.text,
-            {
-                from: "hi",
-                to: "en"
-            }
-        )
-        bot.sendMessage(chatId, text);
+    const text = await translate(
+        msg.text,
+        {
+            from: "hi",
+            to: "en"
+        }
+    )
+    bot.sendMessage(chatId, text);
+}catch(error){
+    console.log(error);
+}
+
 
         if (msg.text.trim().toLowerCase().match(/^(hello|hi{1,12})$/)) {
             bot.sendMessage(chatId, `👋 Hello!! ${msg.from.first_name}`);
