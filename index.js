@@ -20,7 +20,7 @@ if (!global.botInstance) {
         console.log(`Received message from user ID: ${userId}`);
         try {
 
-            if (!text) return ;
+            if (!msg.text) return ;
             
             const detectLanguage = await franc(msg.text);
             console.log(detectLanguage);
