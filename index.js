@@ -44,12 +44,7 @@ if (!global.botInstance) {
                 }, 1000);
             }
         } catch (error) {
-            const text = await translate(
-                    msg.text, "en"
-                )
-                setTimeout(() => {
-                    bot.sendMessage(chatId, text);
-                }, 1000);
+            console.log(error);
         }
 
     });
