@@ -25,12 +25,23 @@ if (!global.botInstance) {
             const detectLanguage = await franc(msg.text);
             console.log(detectLanguage);
 
+
+        if (msg.text.trim().toLowerCase().match(/^(hello|hi{1,12})$/)) {
+            bot.sendMessage(chatId, `👋 Hello!! ${msg.from.first_name}`);
+       return ;
+        }
+            
             if (detectLanguage === 'eng') {
                 return;
             } else if (detectLanguage === "und"){
                 return ;
             }else{
-                return;
+                const text = await translate(
+                    msg.text, "en"
+                )
+                setTimeout(() => {
+                    bot.sendMessage(chatId, text);
+                }, 1000);
             }
         } catch (error) {
             const text = await translate(
@@ -39,11 +50,6 @@ if (!global.botInstance) {
                 setTimeout(() => {
                     bot.sendMessage(chatId, text);
                 }, 1000);
-        }
-
-
-        if (msg.text.trim().toLowerCase().match(/^(hello|hi{1,12})$/)) {
-            bot.sendMessage(chatId, `👋 Hello!! ${msg.from.first_name}`);
         }
 
     });
