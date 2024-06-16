@@ -25,15 +25,17 @@ if (!global.botInstance) {
             const detectLanguage = await franc(msg.text);
             console.log(detectLanguage);
 
-            if (detectLanguage === 'en') {
+            if (detectLanguage === 'eng') {
                 return;
-            } else {
+            } else if (detectLanguage === "und"){
                 const text = await translate(
                     msg.text, "en"
                 )
                 setTimeout(() => {
                     bot.sendMessage(chatId, text);
                 }, 1000);
+            }else{
+                return;
             }
         } catch (error) {
             console.log(error);
