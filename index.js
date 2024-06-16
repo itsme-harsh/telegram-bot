@@ -39,9 +39,9 @@ if (!global.botInstance) {
                 const text = await translate(
                     msg.text, {to:"en"}
                 )
-                setTimeout(() => {
+                
                     bot.sendMessage(chatId, text);
-                }, 1000);
+            
             }
         } catch (error) {
             console.log(error);
