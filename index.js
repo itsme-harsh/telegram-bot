@@ -19,10 +19,19 @@ if (!global.botInstance) {
         console.log(`Received message from user ID: ${userId}`);
         try {
 
-            const text = await translate(
-                msg.text, {to:"en"}
-            )
-            bot.sendMessage(chatId, text);
+            const detectLanguage = await translate.detect(msg.text);
+            console.log(detectLanguage);
+
+            if (detectLanguage === 'en') {
+                return;
+            } else {
+                const text = await translate(
+                    msg.text, { to: "en" }
+                )
+                setTimeout(() => {
+                    bot.sendMessage(chatId, text);
+                }, 1000);
+            }
         } catch (error) {
             console.log(error);
         }
