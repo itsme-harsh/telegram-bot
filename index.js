@@ -25,7 +25,6 @@ if (!global.botInstance) {
             const detectLanguage = await franc(msg.text);
             console.log(detectLanguage);
 
-
         if (msg.text.trim().toLowerCase().match(/^(hello|hi{1,12})$/)) {
             bot.sendMessage(chatId, `👋 Hello!! ${msg.from.first_name}`);
        return ;
