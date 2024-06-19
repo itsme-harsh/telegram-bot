@@ -16,7 +16,7 @@ if (!global.botInstance) {
     bot.on('message', async (msg) => {
         const chatId = msg.chat.id;
         const userId = msg.from.id;
-
+ 
         console.log(`Received message from user ID: ${userId}`);
         try {
 
