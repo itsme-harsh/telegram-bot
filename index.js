@@ -6,7 +6,6 @@ import translate from 'translate';
 dotenv.config();
 
 const token = process.env.TELEGRAM_ACCESS_TOKEN;
-
 let bot;
 
 if (!global.botInstance) {
